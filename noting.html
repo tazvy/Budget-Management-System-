@@ -1,0 +1,53 @@
+  
+$.ajax({
+    url: 'http://localhost:4000/Getbudget',
+    type: 'GET',
+    contentType: 'application/json',
+    
+    success: function (res) {
+      dbbudget=res[0].amount;
+
+     
+  budget = dbbudget;
+  // Calculate Balance
+  
+ 
+     
+    },
+    error: function () {
+        alert('Error: In sending the request!');
+    }
+});
+
+
+
+var name2,cost2,catagory2,date2,id2;
+
+var expenditureValue2 = $('#expenditure-value');
+$.ajax({
+    url: 'http://localhost:4000/Getthings',
+    type: 'GET',
+    contentType: 'application/json',
+    
+    success: function (res) {
+      res.forEach(function(result) {
+      name2=result.Title;
+      catagory2=result.Catagory;
+      cost2=result.Cost;
+      date2=result.Date;
+      id2=result.ID;
+      
+      
+      expenses = parseInt(expenses+cost2);
+
+     
+
+      });
+      cal("8000",expenses);
+      
+    },
+  
+    error: function () {
+        alert('Error: In sending the request!');
+    }
+});
